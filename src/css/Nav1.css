@@ -1,0 +1,42 @@
+:root {
+    --navbar-bg: #f5f5f5;
+  }
+  
+  .container-css {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  header {
+    background-color: var(--navbar-bg);
+  }
+  
+  .nav-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  .main-nav {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-us-text {
+    background: linear-gradient(90deg, #78c2fe 0%, #ffbbec 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+  
+  .select-nav1{
+    background-color: var(--navbar-bg);
+  }
+  
