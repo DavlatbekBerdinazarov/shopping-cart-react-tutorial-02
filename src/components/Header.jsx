@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsInstagram } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import '../css/Nav1.css'
@@ -6,6 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import Offcanvas from "./Offcanvas";
+import { ShoppingCartContext } from "../layouts/MainLayout";
 
 export default function Header() {
   return (

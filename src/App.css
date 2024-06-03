@@ -1,0 +1,9 @@
+
+.product-card:hover .card-img-top{
+    transition:all 0.7s ease;
+    transform: scale(1.1);
+}
+
+.img-wrapper{
+    overflow: hidden;
+}

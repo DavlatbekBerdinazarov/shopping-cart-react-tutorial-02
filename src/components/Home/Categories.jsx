@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { RiShoppingCart2Fill } from "react-icons/ri";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#36d7b7");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -13,20 +15,42 @@ export default function Categories() {
         );
         if (response.status === 200) {
           setCategories(response.data);
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching categories:", error);
+        setLoading(false);
       }
     };
 
     fetchCategories();
   }, []);
 
-  console.log(categories);
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+
+  if (loading) {
+    return (
+      <div className="h-100 p-5">
+        <ClimbingBoxLoader
+          color={color}
+          loading={loading}
+          cssOverride={override}
+          size={30}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-5">
       <div className="row">
+        <h2 className="mb-4">Kategoriyalar</h2>
         {categories.map((category) => (
           <div key={category.id} className="col-md-4 mb-4">
             <div className="card">
@@ -42,9 +66,6 @@ export default function Categories() {
                 <div className="d-flex gap-2">
                   <a href="#" className="btn btn-primary">
                     View Products
-                  </a>
-                  <a href="#" className="btn btn-success">
-                    <RiShoppingCart2Fill />
                   </a>
                 </div>
               </div>
