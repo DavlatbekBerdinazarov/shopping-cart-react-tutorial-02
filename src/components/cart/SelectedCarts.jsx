@@ -1,10 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IoMdClose } from "react-icons/io";
 import { ShoppingCartContext } from "../../layouts/MainLayout";
 
 export default function SelectedCarts() {
   const { cartData, setCartData } = useContext(ShoppingCartContext);
+  const [selectedProduct, setSelectedProduct] = useState(cartData);
+
+  useEffect(() => {
+    setSelectedProduct(cartData.reverse())
+  },[cartData])
+
 
   const incrementQuantity = (id) => {
     setCartData((prevCartData) =>
@@ -34,7 +40,7 @@ export default function SelectedCarts() {
 
   return (
     <div className="container mt-5">
-      {cartData.map((product) => (
+      {selectedProduct.map((product) => (
         <div key={product.id} className="mb-3 border">
           <div className="d-flex mb-3 align-items-center">
             <img

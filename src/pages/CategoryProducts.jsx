@@ -2,17 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { RiShoppingCart2Fill } from "react-icons/ri";
 import BounceLoader from "react-spinners/BounceLoader";
-import { ShoppingCartContext } from "../../layouts/MainLayout";
 import Swal from "sweetalert2"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ShoppingCartContext } from "../layouts/MainLayout";
 
-export default function Products() {
+export default function CategoryProducts() {
   const [products, setProducts] = useState([]);
   const [limit, setLimit] = useState(6); // Initial limit to 6 products
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#36d7b7");
 
   const { handleAddToCart } = useContext(ShoppingCartContext);
+
+  const { name } = useParams();
+  console.log(name);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -57,7 +60,9 @@ export default function Products() {
     });
   }
 
-  const displayedProducts = products.slice(0, limit);
+  const displayedProducts = products.filter(product => product.category.name == name);
+  const categoryProducts = displayedProducts.slice(0, limit);
+
 
   const override = {
     display: "block",
@@ -84,7 +89,7 @@ export default function Products() {
     <div className="container mt-5">
       <div className="row">
         <h2 className="mb-4">Products</h2>
-        {displayedProducts.map((product) => (
+        {categoryProducts.map((product) => (
           <div
             key={product.id}
             className="product-card col-md-4 mb-4"

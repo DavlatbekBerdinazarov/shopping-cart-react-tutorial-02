@@ -38,9 +38,6 @@ export default function MainLayout() {
     0
   );
 
-  console.log(cartData);
-  console.log(totalPrice);
-
   return (
     <ShoppingCartContext.Provider value={{ cartData, setCartData, handleAddToCart, totalPrice }}>
       <Header/>

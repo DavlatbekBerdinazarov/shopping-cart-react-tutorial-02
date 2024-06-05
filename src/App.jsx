@@ -10,6 +10,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Offcanvas from "./components/Offcanvas";
+import CategoryProducts from "./pages/CategoryProducts";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="*" element={<h1>404 Not Found</h1>} />
             <Route path="store" element={<Store />} />
             <Route path="product/:id" element={<ProductDetail />} />
+            <Route path="category/:name" element={<CategoryProducts />} />
             <Route path="blog" element={<Blog />} />
             <Route path="contact" element={<Contact />} />
           </Route>

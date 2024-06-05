@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -11,7 +12,7 @@ export default function Categories() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://api.escuelajs.co/api/v1/categories?limit=6"
+          "https://api.escuelajs.co/api/v1/categories?limit=9"
         );
         if (response.status === 200) {
           setCategories(response.data);
@@ -31,6 +32,8 @@ export default function Categories() {
     margin: "0 auto",
     borderColor: "red",
   };
+
+  console.log(categories)
 
   if (loading) {
     return (
@@ -64,9 +67,9 @@ export default function Categories() {
                 <h5 className="card-title">{category.name}</h5>
                 <p className="card-text">{category.description}</p>
                 <div className="d-flex gap-2">
-                  <a href="#" className="btn btn-primary">
+                  <Link to={`/category/${category.name}`} className="btn btn-primary">
                     View Products
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
